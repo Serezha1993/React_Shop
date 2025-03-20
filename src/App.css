@@ -1,4 +1,23 @@
-.App {
-  text-align: center;
+.header {
+  background: rgb(52, 52, 236);
+  height: 70px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
 }
-
+.card {
+  box-shadow: 3px 3px 3px 3px gray;
+  margin: 20px;
+  padding: 10px;
+  width: 250px;
+  height: 300px;
+}
+ .card div {
+  margin-top: 10px;
+ }
+.card-block {
+  display: flex;
+  
+}
