@@ -1,4 +1,4 @@
-export const Header = () => {
+export const Header = ({handleInput}) => {
     return(
         <div className="header">
          <div>
@@ -8,6 +8,7 @@ export const Header = () => {
             alt="здесь фото" 
             />
          </div>
+         <input onChange={(e) => handleInput(e.target.value)}/>
         <div>header</div>
        </div>
     )
