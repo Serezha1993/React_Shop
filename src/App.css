@@ -17,7 +17,7 @@
   margin: 20px;
   padding: 10px;
   width: 250px;
-  height: 300px;
+  height: 350px;
 }
  .card div {
   margin-top: 10px;
@@ -25,5 +25,23 @@
 .card-block {
   display: flex;
   flex-wrap: wrap;
+  
+}
+.navbar {
+  position: absolute;
+  background: rgb(240, 234, 234);
+  width: 300px;
+  opacity: 0.9;
+  height: 100%;
+  box-shadow: 3px 3px 3px 3px gray;
+  padding: 1opx;
+}
+.navbar div {
+  padding: 20px;
+
+}
+
+.navbar div:hover, .active {
+  background: rgb(127, 127, 220);
   
 }
