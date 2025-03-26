@@ -2,6 +2,7 @@ import './App.css';
 import { Card } from './Components/Card';
 import { Header } from './Components/Header';
 import React, { useState } from 'react';
+import { Navbar } from './Components/Navbar';
 
 
 const products = [
@@ -116,12 +117,18 @@ const products = [
   ]
 
 function App () {
-  const [inputName, setInputName] = useState('')
+  const [inputName, setInputName] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("")
+  const [favoritesIds, setFavoritesIds] = useState([])
+
   const [openNavbar, setOpenNavbar] = useState(false)
 
-  const filteredProduct = inputName
-   ? products.filter((el) => el.brand.includes(inputName))
-   : products
+
+  const filteredProduct = products.filter(
+    (el) =>
+       el.category.includes(selectedCategory) &&
+       el.name.toLowerCase().includes(inputName.toLowerCase())
+  )
 
   const handleInput = (text) => {
     setInputName(text)
@@ -131,19 +138,37 @@ function App () {
     setOpenNavbar(!openNavbar)
   }
 
+  const handleChangeCategory = (changeCategory) => {
+    if (changeCategory === selectedCategory) {
+      setSelectedCategory("")
+    } else {
+      setSelectedCategory(changeCategory)
+    }
+  }
+
+  const addToFavorites = (id) => {
+    if (favoritesIds.includes(id)) {
+      setFavoritesIds(favoritesIds.filter((i) => i !== id))
+      return
+    }
+    setFavoritesIds([...favoritesIds, id])
+  }
+
   return (
     <div>
       <Header handleInput={handleInput} handleOpen={handleOpen}/>
       {openNavbar && (
-      <div className="navbar">
-      <div>Телефоны</div>
-      <div className="active">Ноутбуки</div>
-      <div>Мониторы</div>
-      </div>
-      )}
+         <Navbar
+          handleChangeCategory={handleChangeCategory}
+          selectedCategory={selectedCategory}
+          />
+            )}
      <div className="card-block">
       {filteredProduct.map((el) => (
         <Card 
+        addToFavorites={addToFavorites}
+        favoritesIds={favoritesIds}
+        id={el.id}
         key={el.id}
         name={el.name}
         brand={el.brand}
