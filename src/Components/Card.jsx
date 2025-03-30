@@ -12,9 +12,11 @@ export const Card = ({ img, name, rating, price, brand, addToFavorites, id, favo
             <h3>${price}</h3>
         </div>
          <div>
-          <div className="cardIcon" onClick={() => addToFavorites(id)}>
+          {favoritesIds && (
+            <div className="cardIcon" onClick={() => addToFavorites(id)}>
             <FavoriteIcon active={favoritesIds.includes(id)}/>
           </div>
+          )}
         </div>
       </div>
       </div>
