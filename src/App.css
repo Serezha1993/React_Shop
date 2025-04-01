@@ -19,14 +19,13 @@
   width: 250px;
   height: 350px;
 }
- /* .card div {
+/* .card div {
   margin-top: 10px;
  } */
 
 .card-block {
   display: flex;
   flex-wrap: wrap;
-  
 }
 .navbar {
   position: absolute;
@@ -39,12 +38,11 @@
 }
 .navbar div {
   padding: 20px;
-
 }
 
-.navbar div:hover, .active {
+.navbar div:hover,
+.active {
   background: rgb(127, 127, 220);
-  
 }
 
 .cardContent {
