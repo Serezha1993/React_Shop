@@ -11,10 +11,12 @@ export const Main = ({
   addToFavorites,
   favoritesIds,
   handleOpen,
+  loading
 }) => {
   return (
     <div>
       <Header handleInput={handleInput} handleOpen={handleOpen} />
+      {loading &&<h1>Loading...</h1>}
       {openNavbar && (
         <Navbar
           handleChangeCategory={handleChangeCategory}

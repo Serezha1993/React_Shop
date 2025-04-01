@@ -76,6 +76,7 @@ function App() {
               addToFavorites={addToFavorites}
               favoritesIds={favoritesIds}
               handleOpen={handleOpen}
+              loading={loading}
             />
           }
         />
