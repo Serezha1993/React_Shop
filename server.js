@@ -4,10 +4,8 @@ const cors = require("cors");
 const app = express();
 const PORT = 5000;
 
-// Разрешаем CORS
 app.use(cors());
 
-// Заглушка для товаров
 app.get("/products", (req, res) => {
   res.json([
     { id: 1, name: "Торт Наполеон", price: 500 },
@@ -16,3 +14,20 @@ app.get("/products", (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Сервер запущен на http://localhost:${PORT}`));
+
+
+
+// const jsonServer = require("json-server");
+// const cors = require("cors");
+// const server = jsonServer.create();
+// const router = jsonServer.router("db.json");
+// const middlewares = jsonServer.defaults();
+
+// server.use(cors()); // Разрешает все CORS-запросы
+// server.use(middlewares);
+// server.use(router);
+
+// server.listen(5000, () => {
+//   console.log("JSON Server is running on http://localhost:5000");
+// });
+

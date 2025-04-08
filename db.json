@@ -108,5 +108,34 @@
       "rating": 5,
       "img": "https://img.5element.by/import/images/ut/goods/good_eb9dc94d-7028-11ef-8db4-005056012b6d/z1bq0009m-a3114-macbook-air-15-m3-8-10-8-512-space-gray-noutbuk-apple-1_600.jpg"
     }
+  ],
+  "favorites": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "id": 8
+    },
+    {
+      "id": 9
+    }
   ]
 }

@@ -7,31 +7,37 @@ import { Routes, Route } from "react-router-dom";
 import { Main } from "./Main";
 import { FavoritePage } from "./FavoritePage";
 
-
-
 function App() {
   const [products, setProducts] = useState([]);
+  const [favoriteProducts, setFavoriteProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [inputName, setInputName] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  // const [favoritesIds, setFavoritesIds] = useState([]);
+
+  const [openNavbar, setOpenNavbar] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/products")
+    fetch(
+      `http://localhost:5000/products?q=${inputName}&category_like=${selectedCategory}`
+    )
       .then((response) => response.json())
       .then((result) => {
         setLoading(false);
         setProducts(result);
       })
       .catch((error) => console.log(error));
+  }, [inputName, selectedCategory]);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/favorites`)
+      .then((response) => response.json())
+      .then((result) => {
+        setFavoriteProducts(result);
+      })
+      .catch((error) => console.log(error));
   }, []);
-
-
-
-
-  const [inputName, setInputName] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [favoritesIds, setFavoritesIds] = useState([]);
-
-  const [openNavbar, setOpenNavbar] = useState(false);
 
   const handleInput = (text) => {
     setInputName(text);
@@ -50,16 +56,14 @@ function App() {
   };
 
   const addToFavorites = (id) => {
-    if (favoritesIds.includes(id)) {
-      setFavoritesIds(favoritesIds.filter((i) => i !== id));
-      return;
-    }
-    setFavoritesIds([...favoritesIds, id]);
+    fetch(`http://localhost:5000/favorites`, {
+      method: "POST",
+      body: JSON.stringify({ name: "apple", price: 3000 }),
+      header: {
+        "Content-type": "application/json",
+      },
+    });
   };
-
-  const favoriteProducts = products.filter((product) =>
-    favoritesIds.includes(product.id)
-  );
 
   return (
     <div>
@@ -74,7 +78,7 @@ function App() {
               selectedCategory={selectedCategory}
               products={products}
               addToFavorites={addToFavorites}
-              favoritesIds={favoritesIds}
+              favoritesIds={[]}
               handleOpen={handleOpen}
               loading={loading}
             />

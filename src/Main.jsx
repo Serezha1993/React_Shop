@@ -16,7 +16,7 @@ export const Main = ({
   return (
     <div>
       <Header handleInput={handleInput} handleOpen={handleOpen} />
-      {loading &&<h1>Loading...</h1>}
+      {loading && <h1>Loading...</h1>}
       {openNavbar && (
         <Navbar
           handleChangeCategory={handleChangeCategory}
