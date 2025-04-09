@@ -55,11 +55,11 @@ function App() {
     }
   };
 
-  const addToFavorites = (id) => {
+  const addToFavorites = (product) => {
     fetch(`http://localhost:5000/favorites`, {
       method: "POST",
-      body: JSON.stringify({ name: "apple", price: 3000 }),
-      header: {
+      body: JSON.stringify(product),
+      headers: {
         "Content-type": "application/json",
       },
     });

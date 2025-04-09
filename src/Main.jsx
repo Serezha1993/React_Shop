@@ -24,17 +24,11 @@ export const Main = ({
         />
       )}
       <div className="card-block">
-        {products.map((el) => (
+        {products.map((product) => (
           <Card
             addToFavorites={addToFavorites}
             favoritesIds={favoritesIds}
-            id={el.id}
-            key={el.id}
-            name={el.name}
-            brand={el.brand}
-            img={el.img}
-            rating={el.rating}
-            price={el.price}
+            product={product}
           />
         ))}
       </div>
