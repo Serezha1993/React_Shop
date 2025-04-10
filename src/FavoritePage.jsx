@@ -6,17 +6,7 @@ export const FavoritePage = ({ favoriteProducts }) => {
     <div>
       <div className="card-block">
         {favoriteProducts.length ? (
-          favoriteProducts.map((el) => (
-            <Card
-              id={el.id}
-              key={el.id}
-              name={el.name}
-              brand={el.brand}
-              img={el.img}
-              rating={el.rating}
-              price={el.price}
-            />
-          ))
+          favoriteProducts.map((el) => <Card key={el.id} product={el} />)
         ) : (
           <h3>Товаров нет...!</h3>
         )}

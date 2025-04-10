@@ -111,13 +111,13 @@
   ],
   "favorites": [
     {
-      "id": 1
-    },
-    {
-      "id": 2
-    },
-    {
-      "id": 3
+      "id": 3,
+      "brand": "hp",
+      "name": "155",
+      "price": 550,
+      "category": "monitor",
+      "rating": 3,
+      "img": "https://images.philips.com/is/image/philipsconsumer/b9803f34eb74494582e9b014012a3fa6?wid=700&hei=700&$pnglarge$"
     }
   ]
 }

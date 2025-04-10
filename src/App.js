@@ -13,7 +13,6 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [inputName, setInputName] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
-  // const [favoritesIds, setFavoritesIds] = useState([]);
 
   const [openNavbar, setOpenNavbar] = useState(false);
 
@@ -30,13 +29,17 @@ function App() {
       .catch((error) => console.log(error));
   }, [inputName, selectedCategory]);
 
-  useEffect(() => {
+  const loadFavorites = () => {
     fetch(`http://localhost:5000/favorites`)
       .then((response) => response.json())
       .then((result) => {
         setFavoriteProducts(result);
       })
       .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    loadFavorites();
   }, []);
 
   const handleInput = (text) => {
@@ -56,13 +59,19 @@ function App() {
   };
 
   const addToFavorites = (product) => {
-    fetch(`http://localhost:5000/favorites`, {
-      method: "POST",
-      body: JSON.stringify(product),
-      headers: {
-        "Content-type": "application/json",
-      },
-    });
+    if (favoriteProducts.some((el) => el.id === product.id)) {
+      fetch(`http://localhost:5000/favorites/${product.id}`, {
+        method: "DELETE",
+      }).then(() => loadFavorites());
+    } else {
+      fetch(`http://localhost:5000/favorites`, {
+        method: "POST",
+        body: JSON.stringify(product),
+        headers: {
+          "Content-type": "application/json",
+        },
+      }).then(() => loadFavorites());
+    }
   };
 
   return (
@@ -78,7 +87,7 @@ function App() {
               selectedCategory={selectedCategory}
               products={products}
               addToFavorites={addToFavorites}
-              favoritesIds={[]}
+              favoritesIds={favoriteProducts.map((i) => i.id)}
               handleOpen={handleOpen}
               loading={loading}
             />
