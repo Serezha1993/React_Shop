@@ -11,7 +11,7 @@ export const Main = ({
   addToFavorites,
   favoritesIds,
   handleOpen,
-  loading
+  loading,
 }) => {
   return (
     <div>
