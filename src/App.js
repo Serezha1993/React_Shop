@@ -6,15 +6,19 @@ import { Navbar } from "./Components/Navbar";
 import { Routes, Route } from "react-router-dom";
 import { Main } from "./Main";
 import { FavoritePage } from "./FavoritePage";
+import { fetchFavorites } from "./favoritesSlice";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 function App() {
   const [products, setProducts] = useState([]);
-  const [favoriteProducts, setFavoriteProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [inputName, setInputName] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const favorites = useSelector((state) => state.favorites.favorites);
 
   const [openNavbar, setOpenNavbar] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setLoading(true);
@@ -29,17 +33,9 @@ function App() {
       .catch((error) => console.log(error));
   }, [inputName, selectedCategory]);
 
-  const loadFavorites = () => {
-    fetch(`http://localhost:5000/favorites`)
-      .then((response) => response.json())
-      .then((result) => {
-        setFavoriteProducts(result);
-      })
-      .catch((error) => console.log(error));
-  };
-
   useEffect(() => {
-    loadFavorites();
+    // loadFavorites();
+    dispatch(fetchFavorites());
   }, []);
 
   const handleInput = (text) => {
@@ -59,10 +55,10 @@ function App() {
   };
 
   const addToFavorites = (product) => {
-    if (favoriteProducts.some((el) => el.id === product.id)) {
+    if (favorites.some((el) => el.id === product.id)) {
       fetch(`http://localhost:5000/favorites/${product.id}`, {
         method: "DELETE",
-      }).then(() => loadFavorites());
+      }).then(() => dispatch(fetchFavorites()));
     } else {
       fetch(`http://localhost:5000/favorites`, {
         method: "POST",
@@ -70,7 +66,7 @@ function App() {
         headers: {
           "Content-type": "application/json",
         },
-      }).then(() => loadFavorites());
+      }).then(() => dispatch(fetchFavorites()));
     }
   };
 
@@ -87,16 +83,13 @@ function App() {
               selectedCategory={selectedCategory}
               products={products}
               addToFavorites={addToFavorites}
-              favoritesIds={favoriteProducts.map((i) => i.id)}
+              favoritesIds={favorites.map((i) => i.id)}
               handleOpen={handleOpen}
               loading={loading}
             />
           }
         />
-        <Route
-          path="/favorite"
-          element={<FavoritePage favoriteProducts={favoriteProducts} />}
-        />
+        <Route path="/favorite" element={<FavoritePage />} />
       </Routes>
     </div>
   );
