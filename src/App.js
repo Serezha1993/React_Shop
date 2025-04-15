@@ -9,32 +9,24 @@ import { FavoritePage } from "./FavoritePage";
 import { fetchFavorites } from "./favoritesSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { fetchProducts } from "./productsSlice";
 
 function App() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [inputName, setInputName] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const favorites = useSelector((state) => state.favorites.favorites);
+  const products = useSelector((state) => state.products.products);
+  const productsLoading = useSelector((state) => state.products.loading);
+  
 
   const [openNavbar, setOpenNavbar] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setLoading(true);
-    fetch(
-      `http://localhost:5000/products?q=${inputName}&category_like=${selectedCategory}`
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        setLoading(false);
-        setProducts(result);
-      })
-      .catch((error) => console.log(error));
+    dispatch(fetchProducts({ inputName, selectedCategory }));
   }, [inputName, selectedCategory]);
 
   useEffect(() => {
-    // loadFavorites();
     dispatch(fetchFavorites());
   }, []);
 
@@ -85,7 +77,7 @@ function App() {
               addToFavorites={addToFavorites}
               favoritesIds={favorites.map((i) => i.id)}
               handleOpen={handleOpen}
-              loading={loading}
+              loading={productsLoading}
             />
           }
         />
