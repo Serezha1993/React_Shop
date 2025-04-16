@@ -30,9 +30,8 @@ export const productsSlice = createSlice({
 
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       state.loading = false;
-      const dataFromServer = action.payload;
 
-      state.products = dataFromServer;
+      state.products = action.payload;
     });
   },
 });

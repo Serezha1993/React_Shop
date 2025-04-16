@@ -10,6 +10,30 @@ export const fetchFavorites = createAsyncThunk(
   }
 );
 
+export const addToFavorites = createAsyncThunk(
+  "products/addToFavorites",
+  async (product, thunkAPI) => {
+    await fetch(`http://localhost:5000/favorites`, {
+      method: "POST",
+      body: JSON.stringify(product),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    thunkAPI.dispatch(fetchFavorites());
+  }
+);
+
+export const deleteFavorites = createAsyncThunk(
+  "products/deleteFavorites",
+  async (id, thunkAPI) => {
+    await fetch(`http://localhost:5000/favorites/${id}`, {
+      method: "DELETE",
+    });
+    thunkAPI.dispatch(fetchFavorites());
+  }
+);
+
 const initialState = {
   favorites: [],
 };
@@ -20,8 +44,7 @@ export const favoritesSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(fetchFavorites.fulfilled, (state, action) => {
-      const dataFromServer = action.payload;
-      state.favorites = dataFromServer;
+      state.favorites = action.payload;
     });
   },
 });
