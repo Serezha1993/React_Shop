@@ -1,25 +1,18 @@
 import "./App.css";
-import { Card } from "./Components/Card";
-import { Header } from "./Components/Header";
-import React, { useEffect, useState } from "react";
-import { Navbar } from "./Components/Navbar";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Main } from "./Main";
-import { FavoritePage } from "./FavoritePage";
-import { deleteFavorites, fetchFavorites } from "./favoritesSlice";
+import { Main } from "./pages/main/Main";
+import { FavoritePage } from "./pages/favorite/FavoritePage";
+import {fetchFavorites,} from "./pages/favorite/favoritesSlice";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { fetchProducts } from "./productsSlice";
-import { addToFavorites } from "./favoritesSlice";
+import { fetchProducts } from "./pages/main/productsSlice";
+
 
 function App() {
   const [inputName, setInputName] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
-  const favorites = useSelector((state) => state.favorites.favorites);
-  const products = useSelector((state) => state.products.products);
-  const productsLoading = useSelector((state) => state.products.loading);
 
-  const [openNavbar, setOpenNavbar] = useState(false);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,23 +27,11 @@ function App() {
     setInputName(text);
   };
 
-  const handleOpen = () => {
-    setOpenNavbar(!openNavbar);
-  };
-
   const handleChangeCategory = (changeCategory) => {
     if (changeCategory === selectedCategory) {
       setSelectedCategory("");
     } else {
       setSelectedCategory(changeCategory);
-    }
-  };
-
-  const onClickFavorites = (product) => {
-    if (favorites.some((el) => el.id === product.id)) {
-      dispatch(deleteFavorites(product.id));
-    } else {
-      dispatch(addToFavorites(product));
     }
   };
 
@@ -61,15 +42,10 @@ function App() {
           path="/"
           element={
             <Main
-              openNavbar={openNavbar}
               handleInput={handleInput}
               handleChangeCategory={handleChangeCategory}
               selectedCategory={selectedCategory}
-              products={products}
-              onClickFavorites={onClickFavorites}
-              favoritesIds={favorites.map((i) => i.id)}
-              handleOpen={handleOpen}
-              loading={productsLoading}
+              
             />
           }
         />
