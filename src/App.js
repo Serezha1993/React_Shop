@@ -3,21 +3,20 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Main } from "./pages/main/Main";
 import { FavoritePage } from "./pages/favorite/FavoritePage";
-import {fetchFavorites,} from "./pages/favorite/favoritesSlice";
+import { fetchFavorites } from "./pages/favorite/favoritesSlice";
 import { useDispatch } from "react-redux";
 import { fetchProducts } from "./pages/main/productsSlice";
-
 
 function App() {
   const [inputName, setInputName] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
-
+  const [sort, setSort] = useState("");
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts({ inputName, selectedCategory }));
-  }, [inputName, selectedCategory]);
+    dispatch(fetchProducts({ inputName, selectedCategory, sort }));
+  }, [inputName, selectedCategory, sort]);
 
   useEffect(() => {
     dispatch(fetchFavorites());
@@ -30,9 +29,17 @@ function App() {
   const handleChangeCategory = (changeCategory) => {
     if (changeCategory === selectedCategory) {
       setSelectedCategory("");
-    } else {
-      setSelectedCategory(changeCategory);
+      return;
     }
+    setSelectedCategory(changeCategory);
+  };
+
+  const handleChangeSort = (order) => {
+    if (sort === order) {
+      setSort("");
+      return;
+    }
+    setSort(order);
   };
 
   return (
@@ -42,10 +49,11 @@ function App() {
           path="/"
           element={
             <Main
+              sort={sort}
+              handleChangeSort={handleChangeSort}
               handleInput={handleInput}
               handleChangeCategory={handleChangeCategory}
               selectedCategory={selectedCategory}
-              
             />
           }
         />

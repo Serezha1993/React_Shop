@@ -4,17 +4,19 @@ import { Navbar } from "../../Components/Navbar";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToFavorites, deleteFavorites } from "../favorite/favoritesSlice";
+import { Sort } from "../../Components/Sort/Sort";
 
 export const Main = ({
   handleInput,
   handleChangeCategory,
   selectedCategory,
+  handleChangeSort,
+  sort,
 }) => {
   const [openNavbar, setOpenNavbar] = useState(false);
   const favorites = useSelector((state) => state.favorites.favorites);
   const dispatch = useDispatch();
-  const {products, loading} = useSelector((state) => state.products);
-
+  const { products, loading } = useSelector((state) => state.products);
 
   const handleOpen = () => {
     setOpenNavbar(!openNavbar);
@@ -37,6 +39,8 @@ export const Main = ({
           selectedCategory={selectedCategory}
         />
       )}
+
+      <Sort sort={sort} handleChangeSort={handleChangeSort} />
 
       {loading && <h1>Loading...</h1>}
       <div className="card-block">
