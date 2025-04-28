@@ -1,4 +1,5 @@
 import { FavoriteIcon } from "./FavoriteIcon";
+import { ShoppingCartOutlined } from "@ant-design/icons";
 
 export const Card = ({ product, onClickFavorites, favoritesIds }) => {
   const { name, brand, id, price, rating, img } = product;
@@ -12,11 +13,18 @@ export const Card = ({ product, onClickFavorites, favoritesIds }) => {
           <div>Рейтинг: {rating}</div>
           <h3>${price}</h3>
         </div>
-        {favoritesIds && (
-          <div className="cardIcon" onClick={() => onClickFavorites(product)}>
-            <FavoriteIcon active={favoritesIds.includes(id)} />
-          </div>
-        )}
+
+        <div>
+          {favoritesIds && (
+            <div className="cardIcon" onClick={() => onClickFavorites(product)}>
+              <FavoriteIcon active={favoritesIds.includes(id)} />
+            </div>
+          )}
+
+          <ShoppingCartOutlined
+            style={{ fontSize: "40px", color: "#e97e7e" }}
+          />
+        </div>
       </div>
     </div>
   );

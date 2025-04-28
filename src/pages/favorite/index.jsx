@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Card } from "../../Components/Card";
 import { useSelector } from "react-redux";
+import { ButtonBack } from "../../Components/buttonBack";
 
 export const FavoritePage = () => {
   const favorites = useSelector((state) => state.favorites.favorites);
@@ -14,9 +15,7 @@ export const FavoritePage = () => {
           <h3>Товаров нет...!</h3>
         )}
       </div>
-      <Link to="/">
-        <div>Назад на главную</div>
-      </Link>
+      <ButtonBack />
     </div>
   );
 };
