@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToFavorites, deleteFavorites } from "../favorite/favoritesSlice";
 import { Sort } from "../../Components/Sort/Sort";
+import { addToCart, deleteFromCart } from "../cart/slices";
 
 export const Main = ({
   handleInput,
@@ -14,7 +15,10 @@ export const Main = ({
   sort,
 }) => {
   const [openNavbar, setOpenNavbar] = useState(false);
+
   const favorites = useSelector((state) => state.favorites.favorites);
+  const cartItems = useSelector((state) => state.cart.cart);
+  console.log(cartItems);
   const dispatch = useDispatch();
   const { products, loading } = useSelector((state) => state.products);
 
@@ -27,6 +31,14 @@ export const Main = ({
       dispatch(deleteFavorites(product.id));
     } else {
       dispatch(addToFavorites(product));
+    }
+  };
+
+  const onClickAddToCart = (product) => {
+    if (cartItems.some((el) => el.id === product.id)) {
+      dispatch(deleteFromCart(product.id));
+    } else {
+      dispatch(addToCart(product));
     }
   };
 
@@ -49,7 +61,9 @@ export const Main = ({
             key={product.id}
             onClickFavorites={onClickFavorites}
             favoritesIds={favorites.map((i) => i.id)}
+            cartIds={cartItems.map((i) => i.id)}
             product={product}
+            onClickAddToCart={onClickAddToCart}
           />
         ))}
       </div>

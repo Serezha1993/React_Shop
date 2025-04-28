@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Card } from "../../Components/Card";
 import { useSelector } from "react-redux";
 import { ButtonBack } from "../../Components/buttonBack";

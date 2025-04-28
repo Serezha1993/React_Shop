@@ -7,6 +7,7 @@ import { fetchFavorites } from "./pages/favorite/favoritesSlice";
 import { useDispatch } from "react-redux";
 import { fetchProducts } from "./pages/main/productsSlice";
 import { CartPage } from "./pages/cart";
+import { loadCart } from "./pages/cart/slices";
 
 function App() {
   const [inputName, setInputName] = useState("");
@@ -21,6 +22,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchFavorites());
+    dispatch(loadCart());
   }, []);
 
   const handleInput = (text) => {

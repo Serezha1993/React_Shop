@@ -1,8 +1,15 @@
 import { FavoriteIcon } from "./FavoriteIcon";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 
-export const Card = ({ product, onClickFavorites, favoritesIds }) => {
+export const Card = ({
+  product,
+  onClickFavorites,
+  favoritesIds,
+  onClickAddToCart,
+  cartIds,
+}) => {
   const { name, brand, id, price, rating, img } = product;
+  const color = cartIds && cartIds.includes(id) ? "green" : "#e97e7e";
   return (
     <div className="card">
       <img width={200} height={200} src={img} alt="здесь фото" />
@@ -20,10 +27,12 @@ export const Card = ({ product, onClickFavorites, favoritesIds }) => {
               <FavoriteIcon active={favoritesIds.includes(id)} />
             </div>
           )}
-
-          <ShoppingCartOutlined
-            style={{ fontSize: "40px", color: "#e97e7e" }}
-          />
+          {cartIds && (
+            <ShoppingCartOutlined
+              onClick={() => onClickAddToCart(product)}
+              style={{ fontSize: "40px", color: color }}
+            />
+          )}
         </div>
       </div>
     </div>
