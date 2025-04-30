@@ -10,6 +10,7 @@ import { addToCart, deleteFromCart } from "../cart/slices";
 export const Main = ({
   handleInput,
   handleChangeCategory,
+  // onClickFavorites,
   selectedCategory,
   handleChangeSort,
   sort,

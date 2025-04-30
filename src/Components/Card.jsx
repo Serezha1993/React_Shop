@@ -10,6 +10,7 @@ export const Card = ({
 }) => {
   const { name, brand, id, price, rating, img } = product;
   const color = cartIds && cartIds.includes(id) ? "green" : "#e97e7e";
+
   return (
     <div className="card">
       <img width={200} height={200} src={img} alt="здесь фото" />
