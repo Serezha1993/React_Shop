@@ -12,7 +12,7 @@ export const loadCart = createAsyncThunk(
 
 export const addToCart = createAsyncThunk(
   "products/addToCart",
-  async (product, {dispatch}) => {
+  async (product, { dispatch }) => {
     await fetch(`http://localhost:5000/cart`, {
       method: "POST",
       body: JSON.stringify(product),
@@ -26,9 +26,23 @@ export const addToCart = createAsyncThunk(
 
 export const deleteFromCart = createAsyncThunk(
   "products/deleteFromCart",
-  async (id, {dispatch}) => {
+  async (id, { dispatch }) => {
     await fetch(`http://localhost:5000/cart/${id}`, {
       method: "DELETE",
+    });
+    dispatch(loadCart());
+  }
+);
+
+export const updateProductCart = createAsyncThunk(
+  "products/updateProductCart",
+  async (updatedProduct, { dispatch }) => {
+    await fetch(`http://localhost:5000/cart/${updatedProduct.id}`, {
+      method: "PUT",
+      body: JSON.stringify(updatedProduct),
+      headers: {
+        "Content-type": "application/json",
+      },
     });
     dispatch(loadCart());
   }

@@ -1,10 +1,21 @@
+import { useDispatch } from "react-redux";
 import "./index.css";
+import { deleteFromCart, updateProductCart } from "./slices";
+import { DeleteOutlined } from "@ant-design/icons";
 
-export const CartItem = ({ product, onClickFavorites }) => {
-  const { name, brand, id, price, rating, img } = product;
+export const CartItem = ({ product }) => {
+  const { name, brand, id, price, img, quantity } = product;
+  const dispatch = useDispatch();
 
-  let quantity = 1;
+  const handleChangePlusQuantity = () => {
+    dispatch(updateProductCart({ ...product, quantity: quantity + 1 }));
+  };
 
+  const handleChangeMinusQuantity = () => {
+    if (quantity > 1) {
+      dispatch(updateProductCart({ ...product, quantity: quantity - 1 }));
+    }
+  };
   return (
     <div className="cartItemBlock">
       <img width={100} height={100} src={img} alt="здесь фото" />
@@ -14,12 +25,13 @@ export const CartItem = ({ product, onClickFavorites }) => {
       </div>
       <div className="cartItemWrapper">
         <div className="cartItemQuantity">
-          <button>+</button>
+          <button onClick={handleChangeMinusQuantity}>-</button>
           <span>{quantity}</span>
-          <button>-</button>
+          <button onClick={handleChangePlusQuantity}>+</button>
         </div>
-        <h3 className="cartItemPrice">${price}</h3>
+        <h3 className="cartItemPrice">${price * quantity}</h3>
       </div>
+      <DeleteOutlined onClick={() => dispatch(deleteFromCart(id))} style={{fontSize: "25px", color: "red"}}/>
     </div>
   );
 };
