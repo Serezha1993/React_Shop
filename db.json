@@ -123,16 +123,6 @@
   ],
   "favorites": [
     {
-      "id": 1,
-      "brand": "hp",
-      "name": "155",
-      "price": 300,
-      "category": "monitor",
-      "quantity": 1,
-      "rating": 3,
-      "img": "https://images.philips.com/is/image/philipsconsumer/b9803f34eb74494582e9b014012a3fa6?wid=700&hei=700&$pnglarge$"
-    },
-    {
       "id": 2,
       "brand": "samsung",
       "name": "samsung s20",
@@ -153,6 +143,16 @@
       "quantity": 1,
       "rating": 3,
       "img": "https://images.philips.com/is/image/philipsconsumer/b9803f34eb74494582e9b014012a3fa6?wid=700&hei=700&$pnglarge$"
+    },
+    {
+      "id": 2,
+      "brand": "samsung",
+      "name": "samsung s20",
+      "price": 900,
+      "category": "phone",
+      "quantity": 1,
+      "rating": 3,
+      "img": "https://affordablephonesng.com/wp-content/uploads/2023/02/Samsung-Galaxy-S20-Plus.jpg"
     }
   ]
 }

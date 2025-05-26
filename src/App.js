@@ -3,13 +3,16 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Main } from "./pages/main/Main";
 import { FavoritePage } from "./pages/favorite";
-import {addToFavorites, deleteFavorites, fetchFavorites,} from "./pages/favorite/favoritesSlice";
+import {
+  addToFavorites,
+  deleteFavorites,
+  fetchFavorites,
+} from "./pages/favorite/favoritesSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "./pages/main/productsSlice";
 import { CartPage } from "./pages/cart";
 import { loadCart } from "./pages/cart/slices";
-
-
+import { Product } from "./pages/product";
 
 function App() {
   const [inputName, setInputName] = useState("");
@@ -73,7 +76,11 @@ function App() {
           }
         />
         <Route path="/favorite" element={<FavoritePage />} />
-        <Route path="/cart" element={<CartPage  onClickFavorites={onClickFavorites}/>} />
+        <Route path="/product/:id" element={<Product />} />
+        <Route
+          path="/cart"
+          element={<CartPage onClickFavorites={onClickFavorites} />}
+        />
       </Routes>
     </div>
   );
