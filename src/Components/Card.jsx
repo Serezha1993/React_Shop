@@ -1,16 +1,9 @@
 import { Link } from "react-router-dom";
-import { FavoriteIcon } from "./FavoriteIcon";
-import { ShoppingCartOutlined } from "@ant-design/icons";
+import { ToFavoriteButton } from "./toFavoriteButton";
+import { ToCartButton } from "./toCardButton";
 
-export const Card = ({
-  product,
-  onClickFavorites,
-  favoritesIds,
-  onClickAddToCart,
-  cartIds,
-}) => {
+export const Card = ({ product }) => {
   const { name, brand, id, price, rating, img } = product;
-  const color = cartIds && cartIds.includes(id) ? "green" : "#e97e7e";
 
   return (
     <div className="card">
@@ -27,18 +20,9 @@ export const Card = ({
           </div>
         </Link>
 
-        <div>
-          {favoritesIds && (
-            <div className="cardIcon" onClick={() => onClickFavorites(product)}>
-              <FavoriteIcon active={favoritesIds.includes(id)} />
-            </div>
-          )}
-          {cartIds && (
-            <ShoppingCartOutlined
-              onClick={() => onClickAddToCart(product)}
-              style={{ fontSize: "40px", color: color }}
-            />
-          )}
+        <div className="iconMainBlock">
+          <ToFavoriteButton product={product} />
+          <ToCartButton product={product} />
         </div>
       </div>
     </div>

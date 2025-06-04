@@ -47,9 +47,12 @@
   justify-content: space-between;
 }
 
-.cardIcon {
+.iconMainBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin-right: 15px;
-  margin-bottom: 46px;
+  margin-bottom: 20px;
 }
 
 .favoriteIconHeader {

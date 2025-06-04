@@ -1,6 +1,5 @@
-import { FavoriteIcon } from "./FavoriteIcon";
 import { Link } from "react-router-dom";
-import { ShoppingCartOutlined } from "@ant-design/icons";
+import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 
 export const Header = ({ handleInput, handleOpen }) => {
   return (
@@ -29,11 +28,11 @@ export const Header = ({ handleInput, handleOpen }) => {
       </div>
       <input onChange={(e) => handleInput(e.target.value)} />
       <Link to="/cart">
-      <ShoppingCartOutlined style={{ fontSize: "40px", color: "#fff" }} />
+        <ShoppingCartOutlined style={{ fontSize: "40px", color: "#fff" }} />
       </Link>
       <Link to="/favorite">
         <div className="favoriteIconHeader">
-          <FavoriteIcon />
+          <HeartOutlined style={{ fontSize: "40px", color: "#fff" }} />
         </div>
       </Link>
     </div>

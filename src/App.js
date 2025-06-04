@@ -3,12 +3,8 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Main } from "./pages/main/Main";
 import { FavoritePage } from "./pages/favorite";
-import {
-  addToFavorites,
-  deleteFavorites,
-  fetchFavorites,
-} from "./pages/favorite/favoritesSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { fetchFavorites } from "./pages/favorite/favoritesSlice";
+import { useDispatch } from "react-redux";
 import { fetchProducts } from "./pages/main/productsSlice";
 import { CartPage } from "./pages/cart";
 import { loadCart } from "./pages/cart/slices";
@@ -20,7 +16,6 @@ function App() {
   const [sort, setSort] = useState("");
 
   const dispatch = useDispatch();
-  const favorites = useSelector((state) => state.favorites.favorites);
 
   useEffect(() => {
     dispatch(fetchProducts({ inputName, selectedCategory, sort }));
@@ -51,14 +46,6 @@ function App() {
     setSort(order);
   };
 
-  const onClickFavorites = (product) => {
-    if (favorites.some((el) => el.id === product.id)) {
-      dispatch(deleteFavorites(product.id));
-    } else {
-      dispatch(addToFavorites(product));
-    }
-  };
-
   return (
     <div>
       <Routes>
@@ -66,7 +53,6 @@ function App() {
           path="/"
           element={
             <Main
-              onClickFavorites={onClickFavorites}
               sort={sort}
               handleChangeSort={handleChangeSort}
               handleInput={handleInput}
@@ -77,10 +63,7 @@ function App() {
         />
         <Route path="/favorite" element={<FavoritePage />} />
         <Route path="/product/:id" element={<Product />} />
-        <Route
-          path="/cart"
-          element={<CartPage onClickFavorites={onClickFavorites} />}
-        />
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
     </div>
   );

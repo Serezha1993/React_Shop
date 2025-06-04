@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 import { loadProduct } from "./slices";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import "./index.css"
+import "./index.css";
+import { ToCartButton } from "../../Components/toCardButton";
+import { ToFavoriteButton } from "../../Components/toFavoriteButton";
 
 export const Product = ({ onClickAddToCart }) => {
   const { id } = useParams();
@@ -32,17 +34,8 @@ export const Product = ({ onClickAddToCart }) => {
         </div>
 
         <div>
-          {/* {favoritesIds && (
-            <div className="cardIcon" onClick={() => onClickFavorites(product)}>
-              <FavoriteIcon active={favoritesIds.includes(id)} />
-            </div>
-          )}
-          {cartIds && (
-            <ShoppingCartOutlined
-              onClick={() => onClickAddToCart(product)}
-              style={{ fontSize: "40px", color: color }}
-            />
-          )} */}
+          <ToFavoriteButton product={product} />
+          <ToCartButton product={product} />
         </div>
       </div>
     </div>
