@@ -1,0 +1,17 @@
+.navbar {
+  position: absolute;
+  background: rgb(240, 234, 234);
+  width: 300px;
+  opacity: 0.9;
+  height: 100%;
+  box-shadow: 3px 3px 3px 3px gray;
+  padding: 1opx;
+
+  div {
+    padding: 20px;
+  }
+  div:hover,
+  .active {
+    background: rgb(127, 127, 220);
+  }
+}

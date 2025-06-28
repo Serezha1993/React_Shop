@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import "./index.scss"
 
 export const Header = ({ handleInput, handleOpen }) => {
   return (

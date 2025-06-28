@@ -1,9 +1,8 @@
-import { ShoppingCartOutlined } from "@ant-design/icons";
 import { useParams } from "react-router-dom";
 import { loadProduct } from "./slices";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import "./index.css";
+import "./index.scss";
 import { ToCartButton } from "../../Components/toCardButton";
 import { ToFavoriteButton } from "../../Components/toFavoriteButton";
 
@@ -20,20 +19,21 @@ export const Product = ({ onClickAddToCart }) => {
   if (!product) {
     return <div>Loading...</div>;
   }
-  const { name, brand, rating, price, img } = product;
+  const { name, brand, rating, price, img, description } = product;
 
   return (
     <div className="productPageBlock">
       <img width={200} height={200} src={img} alt="здесь фото" />
-      <div className="">
+      <div className="productPageContent">
         <div>
           <div>{name}</div>
           <h3>{brand}</h3>
           <div>Рейтинг: {rating}</div>
           <h3>${price}</h3>
+          <p>{description}</p>
         </div>
 
-        <div>
+        <div className="productPageIcons">
           <ToFavoriteButton product={product} />
           <ToCartButton product={product} />
         </div>

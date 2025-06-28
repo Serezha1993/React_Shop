@@ -1,6 +1,6 @@
-import { Card } from "../../Components/Card";
-import { Header } from "../../Components/Header";
-import { Navbar } from "../../Components/Navbar";
+import { Card } from "../../Components/productCard";
+import { Header } from "../../Components/header";
+import { Navbar } from "../../Components/navbar";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Sort } from "../../Components/Sort/Sort";

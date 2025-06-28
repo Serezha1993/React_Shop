@@ -1,3 +1,9 @@
+
+@mixin align-center {
+  display: flex;
+  align-items: center;
+}
+
 .cartItemBlock {
   display: flex;
   box-shadow: 1px 1px 1px 1px grey;
@@ -16,9 +22,8 @@
 
 .cartItemQuantity,
 .cartItemPrice {
+  @include align-center;
   width: 100px;
-  display: flex;
-  align-items: center;
   margin-right: 70px;
 }
 

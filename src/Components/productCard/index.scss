@@ -1,0 +1,21 @@
+@mixin space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  box-shadow: 3px 3px 3px 3px gray;
+  margin: 20px;
+  padding: 10px;
+  width: 250px;
+  height: 350px;
+}
+.cardContent {
+  @include space-between;
+}
+.iconMainBlock {
+  @include space-between;
+  flex-direction: column;
+  margin-right: 15px;
+  margin-bottom: 20px;
+}
