@@ -10,8 +10,33 @@ export const loadProduct = createAsyncThunk(
   }
 );
 
+export const loadComments = createAsyncThunk(
+  "products/loadComments",
+  async (params, thunkApi) => {
+    const result = await fetch(`http://localhost:5000/comments`);
+    const data = await result.json();
+
+    return data;
+  }
+);
+
+export const createComment = createAsyncThunk(
+  "products/createComment",
+  async (comment, { dispatch }) => {
+    await fetch(`http://localhost:5000/comments`, {
+      method: "POST",
+      body: JSON.stringify(comment),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    dispatch(loadComments);
+  }
+);
+
 const initialState = {
   product: null,
+  comments: [],
 };
 
 export const productsSlice = createSlice({
@@ -21,6 +46,9 @@ export const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(loadProduct.fulfilled, (state, action) => {
       state.product = action.payload;
+    });
+    builder.addCase(loadComments.fulfilled, (state, action) => {
+      state.comments = action.payload;
     });
   },
 });

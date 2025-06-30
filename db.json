@@ -218,5 +218,42 @@
       "rating": 3,
       "img": "https://www.largo.fr/4516-large_default/iphone-12-mini-128-go-blanc-reconditionne.jpg"
     }
+  ],
+  "comments": [
+    {
+      "username": "Seiarhei",
+      "text": "HI",
+      "productId": 3,
+      "date": "30.06.2025, 18:56:52",
+      "id": 1
+    },
+    {
+      "username": "Seiarhei",
+      "text": "HI",
+      "productId": 3,
+      "date": "30.06.2025, 18:56:53",
+      "id": 2
+    },
+    {
+      "username": "Seiarhei",
+      "text": "HI",
+      "productId": 3,
+      "date": "30.06.2025, 18:57:38",
+      "id": 3
+    },
+    {
+      "username": "Seiarhei",
+      "text": "HI",
+      "productId": 3,
+      "date": "30.06.2025, 18:57:46",
+      "id": 4
+    },
+    {
+      "username": "dgd",
+      "text": "fbdbd",
+      "productId": 3,
+      "date": "30.06.2025, 18:58:06",
+      "id": 5
+    }
   ]
 }
