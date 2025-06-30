@@ -1,21 +1,22 @@
-.productPageBlock{
-    margin: 20px;
-    box-shadow: 3px 3px 3px 3px grey;
-    padding: 10px;
-    display: flex;
+.productPageBlock {
+  margin: 20px;
+  box-shadow: 3px 3px 3px 3px grey;
+  padding: 10px;
+  display: flex;
 }
-.productPageContent{
-    margin-left: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.productPageContent {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.productPageIcons{
-    display: flex;
+.productPageIcons {
+  display: flex;
 
-    div{
-        margin-right: 30px;
-    }
+  div {
+    margin-right: 30px;
+  }
 }
+
 
