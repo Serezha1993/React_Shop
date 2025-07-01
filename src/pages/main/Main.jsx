@@ -4,6 +4,7 @@ import { Navbar } from "../../Components/navbar";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Sort } from "../../Components/Sort/Sort";
+import { Drawer } from "antd";
 
 export const Main = ({
   handleInput,
@@ -23,12 +24,13 @@ export const Main = ({
   return (
     <div>
       <Header handleInput={handleInput} handleOpen={handleOpen} />
-      {openNavbar && (
+
+      <Drawer open={handleOpen}>
         <Navbar
           handleChangeCategory={handleChangeCategory}
           selectedCategory={selectedCategory}
         />
-      )}
+      </Drawer>
 
       <Sort sort={sort} handleChangeSort={handleChangeSort} />
 

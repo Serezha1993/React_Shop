@@ -12,8 +12,8 @@ export const loadProduct = createAsyncThunk(
 
 export const loadComments = createAsyncThunk(
   "products/loadComments",
-  async (params, thunkApi) => {
-    const result = await fetch(`http://localhost:5000/comments`);
+  async (id, thunkApi) => {
+    const result = await fetch(`http://localhost:5000/comments?productId=${id}`);
     const data = await result.json();
 
     return data;
@@ -30,7 +30,7 @@ export const createComment = createAsyncThunk(
         "Content-type": "application/json",
       },
     });
-    dispatch(loadComments);
+    dispatch(loadComments(comment.productId));
   }
 );
 

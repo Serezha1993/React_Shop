@@ -1,4 +1,4 @@
-import "./index.scss"
+import "./index.scss";
 
 export const Navbar = ({ handleChangeCategory, selectedCategory }) => {
   return (
