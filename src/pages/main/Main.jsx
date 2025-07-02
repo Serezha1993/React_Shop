@@ -12,6 +12,8 @@ export const Main = ({
   selectedCategory,
   handleChangeSort,
   sort,
+  setPrice,
+  price,
 }) => {
   const [openNavbar, setOpenNavbar] = useState(false);
 
@@ -25,8 +27,14 @@ export const Main = ({
     <div>
       <Header handleInput={handleInput} handleOpen={handleOpen} />
 
-      <Drawer open={handleOpen}>
+      <Drawer
+        open={openNavbar}
+        placement="left"
+        onClose={() => setOpenNavbar(false)}
+      >
         <Navbar
+          price={price}
+          setPrice={setPrice}
           handleChangeCategory={handleChangeCategory}
           selectedCategory={selectedCategory}
         />
