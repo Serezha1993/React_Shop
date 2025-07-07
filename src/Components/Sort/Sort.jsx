@@ -1,17 +1,17 @@
 import "./sort.scss";
 
-export const Sort = ({ handleChangeSort, sort }) => {
+export const Sort = ({ handleChangeFilters, sort }) => {
   return (
     <div className="sort">
       <span>Сортировка по цене:</span>
       <span
-        onClick={() => handleChangeSort("asc")}
+        onClick={() => handleChangeFilters("sort", "asc")}
         className={sort === "asc" ? "sortActive" : ""}
       >
         По возрастанию
       </span>
       <span
-        onClick={() => handleChangeSort("desc")}
+        onClick={() => handleChangeFilters("sort", "desc")}
         className={sort === "desc" ? "sortActive" : ""}
       >
         По убыванию

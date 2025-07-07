@@ -1,6 +1,6 @@
 import "./App.scss";
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useSearchParams } from "react-router-dom";
 import { Main } from "./pages/main/Main";
 import { FavoritePage } from "./pages/favorite";
 import { fetchFavorites } from "./pages/favorite/favoritesSlice";
@@ -11,65 +11,44 @@ import { loadCart } from "./pages/cart/slices";
 import { Product } from "./pages/product";
 
 function App() {
-  const [inputName, setInputName] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [sort, setSort] = useState("");
-  const [price, setPrice] = useState({ priceFrom: null, priceTo: null });
-  const [page, setPage] = useState(1);
+  let [searchParams, setSearchParams] = useSearchParams();
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    setPage(1);
-  }, [inputName, selectedCategory, sort, price]);
+  
+
+  const handleChangeFilters = (key, value) => {
+    const newParams = new URLSearchParams(searchParams);
+    if (newParams.get(key) === value || !value) {
+      newParams.delete(key);
+    } else {
+      newParams.set(key, value);
+    }
+
+    setSearchParams(newParams);
+  };
+
+  // useEffect(() => {
+  //   setPage(1);
+  // }, [inputName, selectedCategory, sort, price]);
 
   useEffect(() => {
-    dispatch(fetchProducts({ inputName, selectedCategory, sort, price, page }));
-  }, [inputName, selectedCategory, sort, price, page]);
+    if (searchParams) {
+      dispatch(fetchProducts(searchParams.toString()));
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     dispatch(fetchFavorites());
     dispatch(loadCart());
   }, []);
 
-  const handleInput = (text) => {
-    setInputName(text);
-  };
-
-  const handleChangeCategory = (changeCategory) => {
-    if (changeCategory === selectedCategory) {
-      setSelectedCategory("");
-      return;
-    }
-    setSelectedCategory(changeCategory);
-  };
-
-  const handleChangeSort = (order) => {
-    if (sort === order) {
-      setSort("");
-      return;
-    }
-    setSort(order);
-  };
-
   return (
     <div>
       <Routes>
         <Route
           path="/"
-          element={
-            <Main
-              page={page}
-              setPrice={setPrice}
-              setPage={setPage}
-              price={price}
-              sort={sort}
-              handleChangeSort={handleChangeSort}
-              handleInput={handleInput}
-              handleChangeCategory={handleChangeCategory}
-              selectedCategory={selectedCategory}
-            />
-          }
+          element={<Main handleChangeFilters={handleChangeFilters} />}
         />
         <Route path="/favorite" element={<FavoritePage />} />
         <Route path="/product/:id" element={<Product />} />

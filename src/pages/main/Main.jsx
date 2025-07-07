@@ -7,15 +7,12 @@ import { Sort } from "../../Components/Sort/Sort";
 import { Drawer, Pagination } from "antd";
 
 export const Main = ({
-  handleInput,
-  handleChangeCategory,
   selectedCategory,
-  handleChangeSort,
   sort,
-  setPrice,
   price,
   setPage,
   page,
+  handleChangeFilters,
 }) => {
   const [openNavbar, setOpenNavbar] = useState(false);
 
@@ -27,7 +24,10 @@ export const Main = ({
 
   return (
     <div>
-      <Header handleInput={handleInput} handleOpen={handleOpen} />
+      <Header
+        handleChangeFilters={handleChangeFilters}
+        handleOpen={handleOpen}
+      />
 
       <Drawer
         open={openNavbar}
@@ -35,14 +35,13 @@ export const Main = ({
         onClose={() => setOpenNavbar(false)}
       >
         <Navbar
+          handleChangeFilters={handleChangeFilters}
           price={price}
-          setPrice={setPrice}
-          handleChangeCategory={handleChangeCategory}
           selectedCategory={selectedCategory}
         />
       </Drawer>
 
-      <Sort sort={sort} handleChangeSort={handleChangeSort} />
+      <Sort sort={sort} handleChangeFilters={handleChangeFilters} />
 
       {loading && <h1>Loading...</h1>}
       <div className="card-block">

@@ -1,29 +1,24 @@
 import { Flex, Input } from "antd/lib";
 import "./index.scss";
 
-export const Navbar = ({
-  handleChangeCategory,
-  selectedCategory,
-  setPrice,
-  price,
-}) => {
+export const Navbar = ({ handleChangeFilters, selectedCategory, price }) => {
   return (
     <>
       <div className="category">
         <div
-          onClick={() => handleChangeCategory("phone")}
+          onClick={() => handleChangeFilters("category", "phone")}
           className={selectedCategory === "phone" ? "active" : ""}
         >
           Телефоны
         </div>
         <div
-          onClick={() => handleChangeCategory("laptop")}
+          onClick={() => handleChangeFilters("category", "laptop")}
           className={selectedCategory === "laptop" ? "active" : ""}
         >
           Ноутбуки
         </div>
         <div
-          onClick={() => handleChangeCategory("monitor")}
+          onClick={() => handleChangeFilters("category", "monitor")}
           className={selectedCategory === "monitor" ? "active" : ""}
         >
           Мониторы
@@ -33,11 +28,11 @@ export const Navbar = ({
         <h3>Цена</h3>
         <Flex gap="middle">
           <Input
-            onChange={(e) => setPrice({ ...price, priceFrom: e.target.value })}
+            onChange={(e) => handleChangeFilters("priceFrom", e.target.value)}
           />{" "}
           -
           <Input
-            onChange={(e) => setPrice({ ...price, priceTo: e.target.value })}
+            onChange={(e) => handleChangeFilters("priceTo", e.target.value)}
           />
         </Flex>
       </div>
