@@ -6,14 +6,7 @@ import { useSelector } from "react-redux";
 import { Sort } from "../../Components/Sort/Sort";
 import { Drawer, Pagination } from "antd";
 
-export const Main = ({
-  selectedCategory,
-  sort,
-  price,
-  setPage,
-  page,
-  handleChangeFilters,
-}) => {
+export const Main = ({ searchParams, handleChangeFilters }) => {
   const [openNavbar, setOpenNavbar] = useState(false);
 
   const { products, loading } = useSelector((state) => state.products);
@@ -27,6 +20,7 @@ export const Main = ({
       <Header
         handleChangeFilters={handleChangeFilters}
         handleOpen={handleOpen}
+        searchParams={searchParams}
       />
 
       <Drawer
@@ -36,12 +30,14 @@ export const Main = ({
       >
         <Navbar
           handleChangeFilters={handleChangeFilters}
-          price={price}
-          selectedCategory={selectedCategory}
+          searchParams={searchParams}
         />
       </Drawer>
 
-      <Sort sort={sort} handleChangeFilters={handleChangeFilters} />
+      <Sort
+        searchParams={searchParams}
+        handleChangeFilters={handleChangeFilters}
+      />
 
       {loading && <h1>Loading...</h1>}
       <div className="card-block">
@@ -50,9 +46,9 @@ export const Main = ({
         ))}
       </div>
       <Pagination
-        current={page}
+        current={searchParams.get("_page")}
         total={20}
-        onChange={(page) => setPage(page)}
+        onChange={(page) => handleChangeFilters("_page", page)}
       />
     </div>
   );

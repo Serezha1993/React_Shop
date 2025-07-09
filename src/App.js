@@ -15,22 +15,24 @@ function App() {
 
   const dispatch = useDispatch();
 
-  
+  const copyParams = new URLSearchParams(searchParams);
 
   const handleChangeFilters = (key, value) => {
-    const newParams = new URLSearchParams(searchParams);
-    if (newParams.get(key) === value || !value) {
-      newParams.delete(key);
+    if (copyParams.get(key) === value || !value) {
+      copyParams.delete(key);
+      key === "_order" && copyParams.delete("_sort");
+    } else if (key === "_order") {
+      copyParams.set("_sort", "price");
+      copyParams.set("_order", value);
     } else {
-      newParams.set(key, value);
+      copyParams.set(key, value);
+    }
+    if (key !== "_page") {
+      copyParams.set("_page", 1);
     }
 
-    setSearchParams(newParams);
+    setSearchParams(copyParams);
   };
-
-  // useEffect(() => {
-  //   setPage(1);
-  // }, [inputName, selectedCategory, sort, price]);
 
   useEffect(() => {
     if (searchParams) {
@@ -39,6 +41,8 @@ function App() {
   }, [searchParams]);
 
   useEffect(() => {
+    copyParams.set("_page", "1");
+    setSearchParams(copyParams);
     dispatch(fetchFavorites());
     dispatch(loadCart());
   }, []);
@@ -48,7 +52,12 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Main handleChangeFilters={handleChangeFilters} />}
+          element={
+            <Main
+              searchParams={searchParams}
+              handleChangeFilters={handleChangeFilters}
+            />
+          }
         />
         <Route path="/favorite" element={<FavoritePage />} />
         <Route path="/product/:id" element={<Product />} />

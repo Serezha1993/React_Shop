@@ -1,7 +1,9 @@
 import { Flex, Input } from "antd/lib";
 import "./index.scss";
 
-export const Navbar = ({ handleChangeFilters, selectedCategory, price }) => {
+export const Navbar = ({ handleChangeFilters, searchParams }) => {
+  const selectedCategory = searchParams.get("category");
+
   return (
     <>
       <div className="category">
@@ -28,11 +30,13 @@ export const Navbar = ({ handleChangeFilters, selectedCategory, price }) => {
         <h3>Цена</h3>
         <Flex gap="middle">
           <Input
-            onChange={(e) => handleChangeFilters("priceFrom", e.target.value)}
-          />{" "}
+            onChange={(e) => handleChangeFilters("price_gte", e.target.value)}
+            value={searchParams.get("price_gte")}
+          />
           -
           <Input
-            onChange={(e) => handleChangeFilters("priceTo", e.target.value)}
+            onChange={(e) => handleChangeFilters("price_lte", e.target.value)}
+            value={searchParams.get("price_lte")}
           />
         </Flex>
       </div>
