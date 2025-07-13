@@ -1,5 +1,5 @@
 import "./App.scss";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Routes, Route, useSearchParams } from "react-router-dom";
 import { Main } from "./pages/main/Main";
 import { FavoritePage } from "./pages/favorite";

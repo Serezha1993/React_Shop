@@ -1,8 +1,14 @@
 import { Flex, Input } from "antd/lib";
 import "./index.scss";
+import { debounce } from "lodash";
 
 export const Navbar = ({ handleChangeFilters, searchParams }) => {
   const selectedCategory = searchParams.get("category");
+
+  const debouncedHandlerPrice = debounce(
+    (key, value) => handleChangeFilters(key, value),
+    1000
+  );
 
   return (
     <>
@@ -30,13 +36,13 @@ export const Navbar = ({ handleChangeFilters, searchParams }) => {
         <h3>Цена</h3>
         <Flex gap="middle">
           <Input
-            onChange={(e) => handleChangeFilters("price_gte", e.target.value)}
-            value={searchParams.get("price_gte")}
+            onChange={(e) => debouncedHandlerPrice("price_gte", e.target.value)}
+            defaultValue={searchParams.get("price_gte")}
           />
           -
           <Input
-            onChange={(e) => handleChangeFilters("price_lte", e.target.value)}
-            value={searchParams.get("price_lte")}
+            onChange={(e) => debouncedHandlerPrice("price_lte", e.target.value)}
+            defaultValue={searchParams.get("price_lte")}
           />
         </Flex>
       </div>

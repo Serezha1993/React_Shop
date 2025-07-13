@@ -1,18 +1,19 @@
 import { Link } from "react-router-dom";
 import { ToFavoriteButton } from "../toFavoriteButton";
 import { ToCartButton } from "../toCardButton";
-import "./index.scss"
+import "./index.scss";
+import { memo } from "react";
 
-export const Card = ({ product }) => {
+export const Card = memo(({ product }) => {
   const { name, brand, id, price, rating, img } = product;
 
   return (
     <div className="card">
-      <Link to={`/product/${id}`}>
+      <Link className="link" to={`/product/${id}`}>
         <img width={200} height={200} src={img} alt="здесь фото" />
       </Link>
       <div className="cardContent">
-        <Link to={`/product/${id}`}>
+        <Link className="link" to={`/product/${id}`}>
           <div>
             <div>{name}</div>
             <h3>{brand}</h3>
@@ -28,4 +29,4 @@ export const Card = ({ product }) => {
       </div>
     </div>
   );
-};
+});

@@ -19,10 +19,10 @@ export const CartItem = ({ product }) => {
   };
   return (
     <div className="cartItemBlock">
-      <Link to={`/product/${id}`}>
+      <Link className="link" to={`/product/${id}`}>
         <img width={100} height={100} src={img} alt="здесь фото" />
       </Link>
-      <Link to={`/product/${id}`}>
+      <Link className="link" to={`/product/${id}`}>
         <div className="cartItemTitle">
           <h3>{brand}</h3>
           <div>{name}</div>

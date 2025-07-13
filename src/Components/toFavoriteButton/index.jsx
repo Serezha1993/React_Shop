@@ -25,7 +25,7 @@ export const ToFavoriteButton = ({ product }) => {
       {isFavorite ? (
         <HeartFilled style={{ fontSize: "40px", color: "#d8e156" }} />
       ) : (
-        <HeartOutlined style={{ fontSize: "40px" }} />
+        <HeartOutlined style={{ fontSize: "40px", color: "#C7C7C7" }} />
       )}
     </div>
   );

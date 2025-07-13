@@ -3,12 +3,42 @@
   height: 70px;
   color: #fff;
   display: flex;
-  justify-content: space-around;
+  // justify-content: space-around;
   padding: 10px;
   align-items: center;
 
   input {
     height: 33px;
-    width: 800px;
+    width: 70%;
   }
+  .headerIcons {
+    display: flex;
+    span {
+      margin-left: 30px;
+    }
+  }
+  .logo {
+    margin-left: 30px;
+  }
+  .menuIcon {
+    margin: 0 30px;
+  }
+
+  .menuIconWrapper{
+    position: relative;
+  }
+  .circle {
+    top: 10px;
+    right: 25px;
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: greenyellow;
+  }
+
+  // .iconQuantity{
+  //   margin-left: -25px;
+  //   margin-top: -10px;
+  // }
 }
