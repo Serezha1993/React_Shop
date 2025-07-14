@@ -10,6 +10,8 @@ import { CartPage } from "./pages/cart";
 import { loadCart } from "./pages/cart/slices";
 import { Product } from "./pages/product";
 
+import * as React from "react";
+
 function App() {
   let [searchParams, setSearchParams] = useSearchParams();
 
@@ -17,7 +19,7 @@ function App() {
 
   const copyParams = new URLSearchParams(searchParams);
 
-  const handleChangeFilters = (key, value) => {
+  const handleChangeFilters = (key: string, value: string) => {
     if (copyParams.get(key) === value || !value) {
       copyParams.delete(key);
       key === "_order" && copyParams.delete("_sort");

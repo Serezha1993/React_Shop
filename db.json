@@ -133,64 +133,8 @@
       "img": "https://img.5element.by/import/images/ut/goods/good_eb9dc94d-7028-11ef-8db4-005056012b6d/z1bq0009m-a3114-macbook-air-15-m3-8-10-8-512-space-gray-noutbuk-apple-1_600.jpg"
     }
   ],
-  "favorites": [
-    {
-      "id": 2,
-      "brand": "samsung",
-      "name": "samsung s20",
-      "price": 900,
-      "category": "phone",
-      "description": "series of smartphones produced by Apple Inc., combining mobile telephone, digital camera, music player, and personal computing technologies.",
-      "quantity": 1,
-      "rating": 3,
-      "img": "https://affordablephonesng.com/wp-content/uploads/2023/02/Samsung-Galaxy-S20-Plus.jpg"
-    },
-    {
-      "id": 1,
-      "brand": "hp",
-      "name": "155",
-      "price": 300,
-      "category": "monitor",
-      "description": "series of smartphones produced by Apple Inc., combining mobile telephone, digital camera, music player, and personal computing technologies.",
-      "quantity": 1,
-      "rating": 3,
-      "img": "https://images.philips.com/is/image/philipsconsumer/b9803f34eb74494582e9b014012a3fa6?wid=700&hei=700&$pnglarge$"
-    },
-    {
-      "id": 3,
-      "brand": "hp",
-      "name": "155",
-      "price": 550,
-      "category": "monitor",
-      "description": "series of smartphones produced by Apple Inc., combining mobile telephone, digital camera, music player, and personal computing technologies.",
-      "quantity": 1,
-      "rating": 3,
-      "img": "https://images.philips.com/is/image/philipsconsumer/b9803f34eb74494582e9b014012a3fa6?wid=700&hei=700&$pnglarge$"
-    }
-  ],
-  "cart": [
-    {
-      "id": 1,
-      "brand": "hp",
-      "name": "155",
-      "price": 300,
-      "category": "monitor",
-      "quantity": 1,
-      "rating": 3,
-      "img": "https://images.philips.com/is/image/philipsconsumer/b9803f34eb74494582e9b014012a3fa6?wid=700&hei=700&$pnglarge$"
-    },
-    {
-      "id": 5,
-      "brand": "apple",
-      "name": "iphone 13",
-      "price": 300,
-      "category": "phone",
-      "description": "series of smartphones produced by Apple Inc., combining mobile telephone, digital camera, music player, and personal computing technologies.",
-      "quantity": 1,
-      "rating": 3,
-      "img": "https://www.largo.fr/4516-large_default/iphone-12-mini-128-go-blanc-reconditionne.jpg"
-    }
-  ],
+  "favorites": [],
+  "cart": [],
   "comments": [
     {
       "username": "Seiarhei",

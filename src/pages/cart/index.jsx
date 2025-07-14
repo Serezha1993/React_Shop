@@ -3,7 +3,7 @@ import { ButtonBack } from "../../Components/buttonBack";
 import { CartItem } from "./CartItem";
 import "./index.scss";
 
-export const CartPage = (onClickFavorites) => {
+export const CartPage = () => {
   const { cart } = useSelector((state) => state.cart);
   const totalPrice = cart.reduce(
     (acc, product) => acc + product.quantity * product.price,
@@ -16,13 +16,7 @@ export const CartPage = (onClickFavorites) => {
     <div>
       <div className="">
         {cart.length ? (
-          cart.map((el) => (
-            <CartItem
-              key={el.id}
-              product={el}
-              onClickFavorites={onClickFavorites}
-            />
-          ))
+          cart.map((el) => <CartItem key={el.id} product={el} />)
         ) : (
           <h3>Товаров нет в корзине!</h3>
         )}

@@ -4,7 +4,7 @@ import { Navbar } from "../../Components/navbar";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Sort } from "../../Components/Sort/Sort";
-import { Drawer, Pagination } from "antd";
+import { Drawer, Pagination, Skeleton } from "antd";
 
 export const Main = ({ searchParams, handleChangeFilters }) => {
   const [openNavbar, setOpenNavbar] = useState(false);
@@ -39,11 +39,16 @@ export const Main = ({ searchParams, handleChangeFilters }) => {
         handleChangeFilters={handleChangeFilters}
       />
 
-      {loading && <h1>Loading...</h1>}
       <div className="card-block">
-        {products.map((product) => (
-          <Card key={product.id} product={product} />
-        ))}
+        {loading ? (
+          <Skeleton loading={loading} active avatar></Skeleton>
+        ) : (
+          <>
+            {products.map((product) => (
+              <Card key={product.id} product={product} />
+            ))}
+          </>
+        )}
       </div>
       <Pagination
         current={searchParams.get("_page")}
