@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { loadProduct } from "./slices";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../reduxHooks";
 import { useEffect } from "react";
 import "./index.scss";
 import { ToCartButton } from "../../Components/toCardButton";
@@ -9,9 +9,9 @@ import { ProductComments } from "./comments";
 
 export const Product = () => {
   const { id } = useParams();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const { product } = useSelector((state) => state.product);
+  const { product } = useAppSelector((state) => state.product);
 
   useEffect(() => {
     dispatch(loadProduct(id));

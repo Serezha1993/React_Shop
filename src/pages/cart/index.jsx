@@ -1,10 +1,10 @@
-import { useSelector } from "react-redux";
+import { useAppSelector } from "react-redux";
 import { ButtonBack } from "../../Components/buttonBack";
 import { CartItem } from "./CartItem";
 import "./index.scss";
 
 export const CartPage = () => {
-  const { cart } = useSelector((state) => state.cart);
+  const { cart } = useAppSelector((state) => state.cart);
   const totalPrice = cart.reduce(
     (acc, product) => acc + product.quantity * product.price,
     0

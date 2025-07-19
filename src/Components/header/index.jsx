@@ -3,7 +3,7 @@ import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import "./index.scss";
 import { debounce } from "lodash";
 import { Input } from "antd";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "react-redux";
 
 export const Header = ({ handleChangeFilters, handleOpen, searchParams }) => {
   const debouncedHandler = debounce(
@@ -11,8 +11,8 @@ export const Header = ({ handleChangeFilters, handleOpen, searchParams }) => {
     1000
   );
 
-  const { cart } = useSelector((state) => state.cart);
-  const { favorites } = useSelector((state) => state.favorites);
+  const { cart } = useAppSelector((state) => state.cart);
+  const { favorites } = useAppSelector((state) => state.favorites);
 
 
   const productCartQuantity = cart.reduce(

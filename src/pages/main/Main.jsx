@@ -2,14 +2,14 @@ import { Card } from "../../Components/productCard";
 import { Header } from "../../Components/header";
 import { Navbar } from "../../Components/navbar";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../reduxHooks";
 import { Sort } from "../../Components/Sort/Sort";
 import { Drawer, Pagination, Skeleton } from "antd";
 
 export const Main = ({ searchParams, handleChangeFilters }) => {
   const [openNavbar, setOpenNavbar] = useState(false);
 
-  const { products, loading } = useSelector((state) => state.products);
+  const { products, loading } = useAppSelector((state) => state.products);
 
   const handleOpen = () => {
     setOpenNavbar(!openNavbar);

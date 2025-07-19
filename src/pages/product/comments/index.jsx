@@ -2,11 +2,11 @@ import { Input, Form, Button } from "antd";
 import "./index.scss";
 import { useEffect } from "react";
 import { createComment, loadComments } from "../slices";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "react-redux";
 
 export const ProductComments = ({ productId }) => {
-  const dispatch = useDispatch();
-  const { comments } = useSelector((state) => state.product);
+  const dispatch = useAppDispatch();
+  const { comments } = useAppSelector((state) => state.product);
 
   const { form } = Form.useForm();
 

@@ -1,8 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchProducts = createAsyncThunk(
+type Product = {
+  id: number;
+  brand: string;
+  price: number;
+  category: string;
+  description: string;
+  rating: number;
+  quantity: number;
+  img: string;
+};
+
+export const fetchProducts = createAsyncThunk<Product[], string>(
   "products/fetchProducts",
-  async (params, thunkAPI) => {
+  async (params) => {
     const response = await fetch(`http://localhost:5000/products?${params}`);
     const result = await response.json();
 
@@ -10,7 +21,12 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
-const initialState = {
+type initialStateType = {
+  loading: boolean;
+  products: Product[];
+};
+
+const initialState: initialStateType = {
   products: [],
   loading: false,
 };
@@ -30,6 +46,7 @@ export const productsSlice = createSlice({
       state.products = action.payload;
     });
   },
+  reducers: {},
 });
 
 export default productsSlice.reducer;
