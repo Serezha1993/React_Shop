@@ -5,8 +5,12 @@ import { useState } from "react";
 import { useAppSelector } from "../../reduxHooks";
 import { Sort } from "../../Components/Sort/Sort";
 import { Drawer, Pagination, Skeleton } from "antd";
+import { SearchParamsProps } from "../../types";
 
-export const Main = ({ searchParams, handleChangeFilters }) => {
+export const Main = ({
+  searchParams,
+  handleChangeFilters,
+}: SearchParamsProps) => {
   const [openNavbar, setOpenNavbar] = useState(false);
 
   const { products, loading } = useAppSelector((state) => state.products);
@@ -51,9 +55,11 @@ export const Main = ({ searchParams, handleChangeFilters }) => {
         )}
       </div>
       <Pagination
-        current={searchParams.get("_page")}
+        current={
+          searchParams.get("_page") ? Number(searchParams.get("_page")) : 1
+        }
         total={20}
-        onChange={(page) => handleChangeFilters("_page", page)}
+        onChange={(page) => handleChangeFilters("_page", String(page))}
       />
     </div>
   );

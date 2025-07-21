@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../reduxHooks";
 import {
   addToFavorites,
   deleteFavorites,

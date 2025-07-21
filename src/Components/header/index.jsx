@@ -3,7 +3,7 @@ import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import "./index.scss";
 import { debounce } from "lodash";
 import { Input } from "antd";
-import { useAppSelector } from "react-redux";
+import { useAppSelector } from "../../reduxHooks";
 
 export const Header = ({ handleChangeFilters, handleOpen, searchParams }) => {
   const debouncedHandler = debounce(

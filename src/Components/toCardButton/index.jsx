@@ -1,5 +1,5 @@
 import { ShoppingCartOutlined } from "@ant-design/icons";
-import { useAppDispatch, useAppSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../reduxHooks";
 import { addToCart, deleteFromCart } from "../../pages/cart/slices";
 
 export const ToCartButton = ({ product }) => {

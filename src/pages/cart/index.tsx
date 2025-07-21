@@ -1,4 +1,4 @@
-import { useAppSelector } from "react-redux";
+import { useAppSelector } from "../../reduxHooks";
 import { ButtonBack } from "../../Components/buttonBack";
 import { CartItem } from "./CartItem";
 import "./index.scss";

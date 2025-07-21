@@ -133,8 +133,32 @@
       "img": "https://img.5element.by/import/images/ut/goods/good_eb9dc94d-7028-11ef-8db4-005056012b6d/z1bq0009m-a3114-macbook-air-15-m3-8-10-8-512-space-gray-noutbuk-apple-1_600.jpg"
     }
   ],
-  "favorites": [],
-  "cart": [],
+  "favorites": [
+    {
+      "id": 1,
+      "brand": "hp",
+      "name": "155",
+      "price": 300,
+      "category": "monitor",
+      "description": "series of smartphones produced by Apple Inc., combining mobile telephone, digital camera, music player, and personal computing technologies.",
+      "quantity": 1,
+      "rating": 3,
+      "img": "https://images.philips.com/is/image/philipsconsumer/b9803f34eb74494582e9b014012a3fa6?wid=700&hei=700&$pnglarge$"
+    }
+  ],
+  "cart": [
+    {
+      "id": 1,
+      "brand": "hp",
+      "name": "155",
+      "price": 300,
+      "category": "monitor",
+      "description": "series of smartphones produced by Apple Inc., combining mobile telephone, digital camera, music player, and personal computing technologies.",
+      "quantity": 1,
+      "rating": 3,
+      "img": "https://images.philips.com/is/image/philipsconsumer/b9803f34eb74494582e9b014012a3fa6?wid=700&hei=700&$pnglarge$"
+    }
+  ],
   "comments": [
     {
       "username": "Seiarhei",

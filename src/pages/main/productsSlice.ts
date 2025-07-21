@@ -1,17 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { ProductType } from "../../types";
 
-type Product = {
-  id: number;
-  brand: string;
-  price: number;
-  category: string;
-  description: string;
-  rating: number;
-  quantity: number;
-  img: string;
-};
 
-export const fetchProducts = createAsyncThunk<Product[], string>(
+
+export const fetchProducts = createAsyncThunk<ProductType[], string>(
   "products/fetchProducts",
   async (params) => {
     const response = await fetch(`http://localhost:5000/products?${params}`);
@@ -23,7 +15,7 @@ export const fetchProducts = createAsyncThunk<Product[], string>(
 
 type initialStateType = {
   loading: boolean;
-  products: Product[];
+  products: ProductType[];
 };
 
 const initialState: initialStateType = {

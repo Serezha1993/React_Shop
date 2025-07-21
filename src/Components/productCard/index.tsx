@@ -3,17 +3,9 @@ import { ToFavoriteButton } from "../toFavoriteButton";
 import { ToCartButton } from "../toCardButton";
 import "./index.scss";
 import { memo } from "react";
+import { ProductType } from "../../types";
 
-import * as React from "react";
 
-type ProductType = {
-  name: string;
-  brand: string;
-  id: number;
-  price: number;
-  rating: number;
-  img: string;
-};
 
 type Props = {
   product: ProductType;

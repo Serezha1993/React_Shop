@@ -14,7 +14,9 @@ export const Product = () => {
   const { product } = useAppSelector((state) => state.product);
 
   useEffect(() => {
-    dispatch(loadProduct(id));
+    if (id) {
+      dispatch(loadProduct(id));
+    }
   }, []);
 
   if (!product) {
@@ -42,7 +44,7 @@ export const Product = () => {
         </div>
       </div>
 
-      <ProductComments productId={product.id}/>
+      <ProductComments productId={product.id} />
     </>
   );
 };

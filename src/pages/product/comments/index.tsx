@@ -2,24 +2,29 @@ import { Input, Form, Button } from "antd";
 import "./index.scss";
 import { useEffect } from "react";
 import { createComment, loadComments } from "../slices";
-import { useAppDispatch, useAppSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../../reduxHooks";
 
-export const ProductComments = ({ productId }) => {
+type CommentForm = {
+  userName: string;
+  text: string;
+};
+
+export const ProductComments = ({ productId }: { productId: number }) => {
   const dispatch = useAppDispatch();
   const { comments } = useAppSelector((state) => state.product);
 
-  const { form } = Form.useForm();
+  const [form] = Form.useForm();
 
-  const handleFinish = (values) => {
+  const handleFinish = (values: any) => {
     const date = new Date().toLocaleString();
 
     dispatch(createComment({ ...values, productId, date }));
-    form.resetFields()
+    form.resetFields();
   };
 
   useEffect(() => {
     dispatch(loadComments(productId));
-  }, [productId]);
+  }, [dispatch, productId]);
 
   return (
     <div className="productPageComments">
@@ -37,7 +42,7 @@ export const ProductComments = ({ productId }) => {
       <div>
         {comments.map((comment) => (
           <div key={comment.id} className="productCommentsBlock">
-            <span>{comment.userName}</span>
+            <span>{comment.username}</span>
             <span>{comment.date}</span>
             <div>{comment.text}</div>
           </div>

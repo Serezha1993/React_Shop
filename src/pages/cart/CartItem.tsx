@@ -1,10 +1,13 @@
-import { useAppDispatch } from "react-redux";
+import { useAppDispatch } from "../../reduxHooks";
+import { ProductType } from "../../types";
 import "./index.scss";
 import { deleteFromCart, updateProductCart } from "./slices";
 import { DeleteOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-export const CartItem = ({ product }) => {
+
+
+export const CartItem = ({ product }: {product: ProductType}) => {
   const { name, brand, id, price, img, quantity } = product;
   const dispatch = useAppDispatch();
 
