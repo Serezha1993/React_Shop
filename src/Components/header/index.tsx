@@ -1,19 +1,35 @@
 import { Link } from "react-router-dom";
-import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import {
+  HeartOutlined,
+  ShoppingCartOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import "./index.scss";
 import { debounce } from "lodash";
-import { Input } from "antd";
+import { Button, Input, Modal } from "antd";
 import { useAppSelector } from "../../reduxHooks";
+import { useState } from "react";
+import { Login } from "./Login";
 
-export const Header = ({ handleChangeFilters, handleOpen, searchParams }) => {
+type Props = {
+  handleChangeFilters: (a: string, b: string) => void;
+  handleOpen: () => void;
+  searchParams: URLSearchParams;
+};
+
+export const Header = ({
+  handleChangeFilters,
+  handleOpen,
+  searchParams,
+}: Props) => {
   const debouncedHandler = debounce(
-    (e) => handleChangeFilters("q", e.target.value),
+    (e: React.ChangeEvent<HTMLInputElement>) =>
+      handleChangeFilters("q", e.target.value),
     1000
   );
 
   const { cart } = useAppSelector((state) => state.cart);
   const { favorites } = useAppSelector((state) => state.favorites);
-
 
   const productCartQuantity = cart.reduce(
     (acc, product) => acc + product.quantity,
@@ -29,8 +45,16 @@ export const Header = ({ handleChangeFilters, handleOpen, searchParams }) => {
     searchParams.get("price_gte") ||
     searchParams.get("price_lte");
 
+  const [openModal, setOpenModal] = useState(false);
+
   return (
     <div className="header">
+      <Button
+        size="large"
+        type="text"
+        onClick={() => setOpenModal(true)}
+        icon={<UserOutlined style={{ fontSize: 30, color: "#fff" }} />}
+      />
       <div className="logo">
         <img
           width={60}
@@ -76,6 +100,14 @@ export const Header = ({ handleChangeFilters, handleOpen, searchParams }) => {
           <div className="iconQuantity">{productFavoriteQuantity}</div>
         )}
       </div>
+      <Modal
+        footer={null}
+        onCancel={() => setOpenModal(false)}
+        open={openModal}
+        destroyOnHidden
+      >
+        <Login />
+      </Modal>
     </div>
   );
 };

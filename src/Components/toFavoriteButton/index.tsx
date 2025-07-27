@@ -5,7 +5,8 @@ import {
 } from "../../pages/favorite/favoritesSlice";
 
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
-export const ToFavoriteButton = ({ product }) => {
+import { ProductType } from "../../types";
+export const ToFavoriteButton = ({ product }: {product: ProductType}) => {
   const { favorites } = useAppSelector((state) => state.favorites);
 
   const dispatch = useAppDispatch();
