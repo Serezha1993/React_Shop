@@ -1,11 +1,29 @@
 import { Button, Form, Input } from "antd";
 import { useState } from "react";
+import { registration } from "./slices";
+import { useAppDispatch } from "../../../reduxHooks";
+
+
+type UserFormType = {
+    name: string;
+    login: string;
+    phone: string;
+    password: string;
+  };
+
 
 export const Login = () => {
   const [openRegistration, setOpenRegistration] = useState(false);
+
+  const dispatch = useAppDispatch();
+
+  const handleFinish = (values: UserFormType) => {
+    dispatch(registration(values));
+  };
+
   return (
     <div style={{ marginTop: 30 }}>
-      <Form onFinish={console.log}>
+      <Form onFinish={handleFinish}>
         <Form.Item
           name="login"
           rules={[

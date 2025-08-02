@@ -354,5 +354,14 @@
       "date": "01.07.2025, 17:39:34",
       "id": 28
     }
+  ],
+  "users": [
+    {
+      "login": "007serzh2014@mail.ru",
+      "password": "dvddbd",
+      "name": "adam",
+      "phone": "1111",
+      "id": 1
+    }
   ]
 }
