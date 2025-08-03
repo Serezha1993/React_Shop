@@ -9,32 +9,33 @@ type UserType = {
   id?: string;
 };
 
-const getUsers = createAsyncThunk<UserType[]>("user/list", async (userForm) => {
-  const result = await fetch(`http://localhost:5000/users`);
-  const users = await result.json();
-  return users;
-});
-
 export const registration = createAsyncThunk<
   UserType,
   UserType,
-  { dispatch: AppDispatch }
->("user/registration", async (userForm, { dispatch }) => {
+  { rejectValue: { message: string } }
+>("user/registration", async (userForm, { rejectWithValue }) => {
+  const userResult = await fetch(`http://localhost:5000/users`);
+  const users: UserType[] = await userResult.json();
 
-    const users = dispatch(getUsers())
+  const checkUser = users.some(
+    (user) => user.login === userForm.login || user.phone === userForm.phone
+  );
 
+  if (checkUser) {
+    return rejectWithValue({ message: "Уже зарегистрирован" });
+  }
 
-    
-  const result = await fetch(`http://localhost:5000/users`, {
-    method: "POST",
-    body: JSON.stringify(userForm),
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
-  const user = await result.json();
-  return user;
-  // dispatch(loadCart());
+  if (!checkUser) {
+    const result = await fetch(`http://localhost:5000/users`, {
+      method: "POST",
+      body: JSON.stringify(userForm),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    const user = await result.json();
+    return user;
+  }
 });
 
 type initialStateCart = {

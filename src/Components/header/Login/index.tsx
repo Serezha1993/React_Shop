@@ -1,28 +1,38 @@
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Typography } from "antd";
 import { useState } from "react";
 import { registration } from "./slices";
 import { useAppDispatch } from "../../../reduxHooks";
 
-
 type UserFormType = {
-    name: string;
-    login: string;
-    phone: string;
-    password: string;
-  };
-
+  name: string;
+  login: string;
+  phone: string;
+  password: string;
+};
 
 export const Login = () => {
   const [openRegistration, setOpenRegistration] = useState(false);
 
+  const [error, setError] = useState<null | string>(null);
+
   const dispatch = useAppDispatch();
 
-  const handleFinish = (values: UserFormType) => {
-    dispatch(registration(values));
+  const handleFinish = async (values: UserFormType) => {
+    const result = await dispatch(registration(values));
+
+    if (
+      result.payload &&
+      "message" in result.payload &&
+      result.payload.message === "Уже зарегистрирован"
+    ) {
+      setError("Уже зарегистрирован");
+      setOpenRegistration(false)
+    }
   };
 
   return (
     <div style={{ marginTop: 30 }}>
+      <Typography.Text>{error}</Typography.Text>
       <Form onFinish={handleFinish}>
         <Form.Item
           name="login"
