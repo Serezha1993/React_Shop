@@ -10,10 +10,15 @@ type UserFormType = {
   password: string;
 };
 
+
+
+
+
 export const Login = () => {
   const [openRegistration, setOpenRegistration] = useState(false);
 
   const [error, setError] = useState<null | string>(null);
+  const [form] = Form.useForm();
 
   const dispatch = useAppDispatch();
 
@@ -26,14 +31,15 @@ export const Login = () => {
       result.payload.message === "Уже зарегистрирован"
     ) {
       setError("Уже зарегистрирован");
-      setOpenRegistration(false)
+      setOpenRegistration(false);
+      form.resetFields();
     }
   };
 
   return (
     <div style={{ marginTop: 30 }}>
-      <Typography.Text>{error}</Typography.Text>
-      <Form onFinish={handleFinish}>
+      <h2 style={{ color: "red" }}>{error}</h2>
+      <Form form={form} onFinish={handleFinish}>
         <Form.Item
           name="login"
           rules={[
